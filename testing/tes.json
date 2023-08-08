@@ -1,0 +1,14 @@
+{
+    "id_order": "",
+    "userId": {
+        "name": "",
+        "email": "",
+        "address": ""
+    },
+    "pengujianId": [
+        { "name_pengujian": "", "description": "", "price": "1"},
+        { "name_pengujian": "", "description": "", "price": "1"},
+        { "name_pengujian": "", "description": "", "price": "1"}
+    ],
+    "total_price": "3"
+}
