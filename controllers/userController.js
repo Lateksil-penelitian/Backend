@@ -1,3 +1,4 @@
+import fs from "fs";
 import Users from "../models/user.js";
 import { handlePagination } from "../utils/handlePagination.js";
 import {
@@ -11,7 +12,7 @@ import {
 //UPDATE USER PER ID
 export const updateUser = async (req, res) => {
   const { id } = req.params;
-  const { full_name } = req.body;
+  const { full_name, no_whatsapp, email, address } = req.body;
 
   try {
     const user = await Users.findByPk(id);
@@ -20,17 +21,25 @@ export const updateUser = async (req, res) => {
       return handleResponseNotFound(res);
     }
 
-    if (user.id === id) {
-      await Users.update(
-        {
-          full_name,
-        },
-        { where: { id } }
-      );
-      return handleResponseUpdateSuccess(res);
-    } else {
-      return handleResponseNotFound(res);
+    console.log(user);
+
+    if (req.file) {
+      if (user.image_profile !== null) {
+        fs.unlinkSync(`uploads/profile/${user.image_profile}`);
+      }
     }
+
+    await Users.update(
+      {
+        full_name,
+        no_whatsapp,
+        email,
+        address,
+        image_profile: req.file ? req.file.filename : user.image_profile,
+      },
+      { where: { id: id } }
+    );
+    return handleResponseUpdateSuccess(res);
   } catch (error) {
     console.log(error);
     return handleResponseError(res);
@@ -68,6 +77,7 @@ export const AllUsers = async (req, res) => {
     "no_whatsapp",
     "address",
     "isActive_payment",
+    "image_profile",
   ];
 
   const searchFilterData = [

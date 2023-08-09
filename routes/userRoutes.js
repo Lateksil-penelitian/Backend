@@ -8,12 +8,13 @@ import {
   updateUser,
 } from "../controllers/userController.js";
 import { verifyTokenAllRole } from "../middleware/verifyTokenAllRole.js";
+import uploadProfleUser from "../middleware/uploadProfileUser.js";
 
 //POST
 router.post("/users", AllUsers);
 
 //UPDATE
-router.put("/users/:id", updateUser);
+router.put("/users/:id",uploadProfleUser, updateUser);
 
 //GET
 router.get("/me/:email", verifyTokenAllRole, infoUser);

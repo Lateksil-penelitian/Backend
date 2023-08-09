@@ -40,4 +40,5 @@ const db = new Sequelize("lateksil_db", "root", "", {
   isolationLevel: Sequelize.Transaction.ISOLATION_LEVELS.READ_COMMITTED
 });
 
+
 export default db;

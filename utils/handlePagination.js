@@ -22,7 +22,7 @@ export const handlePagination = async (
 
   if (search !== "") {
     const searchCriteria = allSearch.map((key) => ({
-      [key]: { [Op.iLike]: `%${search}%` },
+      [key]: { [Op.like]: `%${search}%` },
     }));
 
     whereClause = {
@@ -32,7 +32,7 @@ export const handlePagination = async (
 
   for (let key in filter) {
     if (filter.hasOwnProperty(key) !== "") {
-      whereClause[key] = { [Op.iLike]: `%${filter[key]}%` };
+      whereClause[key] = { [Op.like]: `%${filter[key]}%` };
     }
   }
 
