@@ -34,7 +34,7 @@ const Pengujian = db.define(
       allowNull: true,
     },
     description: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
       allowNull: false,
     },
     sampler: {
