@@ -10,7 +10,7 @@ import {
   uploadLaporanTeknisi,
   viewTaskPengujianPDF,
 } from "../controllers/teknisiController.js";
-import uploadTaskPengujianTeknisi from "../middleware/UploadTaskPengujianTeknisi.js";
+import uploadTaskPengujianTeknisi from "../middleware/uploadTaskPengujianTeknisi.js";
 const router = express.Router();
 
 //POST

@@ -10,11 +10,11 @@ const PeralatanPengujian = db.define(
       primaryKey: true,
     },
     status_peralatan: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(5),
       defaultValue: "0", // if 0 = Belum diambil Alatnya, if 1 = Sedang diambil, if 2 = Selesai diambil
     },
     image_pengajuan_alat: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(115),
       defaultValue: null,
     },
     catatan_khusus: {

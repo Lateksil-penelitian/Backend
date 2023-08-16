@@ -12,7 +12,7 @@ const Item = db.define(
       primaryKey: true,
     },
     quantity: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(45),
       allowNull: false,
     },
   },

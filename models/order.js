@@ -13,7 +13,7 @@ const Order = db.define("order", {
     primaryKey: true,
   },
   total_price: {
-    type: DataTypes.STRING,
+    type: DataTypes.STRING(45),
     allowNull: false,
   },
   file_result_pengujian: {

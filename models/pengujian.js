@@ -10,7 +10,7 @@ const Pengujian = db.define(
       primaryKey: true,
     },
     image: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(115),
       defaultValue: null,
     },
     jenis_pengujian: {
@@ -18,19 +18,19 @@ const Pengujian = db.define(
       allowNull: false,
     },
     min_quantity: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(15),
       defaultValue: "1",
     },
     code: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(115),
       allowNull: false,
     },
     category: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(115),
       allowNull: false,
     },
     tempat_pengujian: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(15),
       allowNull: true,
     },
     description: {
@@ -38,7 +38,7 @@ const Pengujian = db.define(
       allowNull: false,
     },
     sampler: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(15),
       allowNull: false,
     },
     catatan_khusus: {
@@ -46,7 +46,7 @@ const Pengujian = db.define(
       allowNull: false,
     },
     price: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(45),
       allowNull: false,
     },
   },

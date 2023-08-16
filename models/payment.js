@@ -10,23 +10,23 @@ const Payment = db.define(
       primaryKey: true,
     },
     full_name: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(45),
       allowNull: false,
     },
     company_name: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(45),
       allowNull: false,
     },
     total_price: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(45),
       allowNull: true,
     },
     image_payment: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(115),
       allowNull: true,
     },
     image_kwitansi: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(115),
       allowNull: true,
     },
   },

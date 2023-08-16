@@ -11,7 +11,7 @@ const Peralatan = db.define(
       primaryKey: true,
     },
     nama_alat: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(115),
       allowNull: false,
     },
   },

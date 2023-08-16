@@ -10,23 +10,23 @@ const MethodTransaction = db.define(
       primaryKey: true,
     },
     type_transaction: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(45),
       defaultValue: "Transfer",
     },
     bank: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(45),
       allowNull: true,
     },
     name_bank: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(115),
       allowNull: true,
     },
     no_rek: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(35),
       allowNull: true,
     },
     is_Active: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(5),
       defaultValue: "0",
     },
   },

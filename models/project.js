@@ -10,7 +10,7 @@ const Project = db.define(
       primaryKey: true,
     },
     nama_proyek: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(115),
       allowNull: false,
     },
     tujuan_proyek: {
@@ -18,15 +18,15 @@ const Project = db.define(
       allowNull: false,
     },
     no_refrensi: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(45),
       allowNull: true,
     },
     no_identifikasi: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(45),
       allowNull: true,
     },
     no_surat: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(45),
       allowNull: true,
     },
     tanggal_mulai: {
