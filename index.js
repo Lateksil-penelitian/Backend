@@ -13,6 +13,10 @@ dotenv.config();
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
+app.get('/', (req, res) => {
+  res.send('Welcome API Lateksil')
+})
+
 app.use(cors());
 app.use((_req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
