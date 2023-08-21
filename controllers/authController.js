@@ -1,13 +1,13 @@
-import bcrypt from "bcrypt";
-import jwt from "jsonwebtoken";
-import Users from "../models/user.js";
-import {
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
+const Users = require('../models/user.js');
+const {
   handleResponse,
   handleResponseError,
   handleResponseSuccess,
-} from "../utils/handleResponse.js";
+} = require('../utils/handleResponse.js');
 
-export const Register = async (req, res) => {
+exports.Register = async (req, res) => {
   const { full_name, email, no_whatsapp, address, company_name, password } =
     req.body;
 
@@ -21,7 +21,7 @@ export const Register = async (req, res) => {
       },
     });
     if (existingEmail) {
-      return handleResponse(res, 404, "Email Sudah Terdaftar");
+      return handleResponse(res, 404, 'Email Sudah Terdaftar');
     }
 
     await Users.create({
@@ -30,16 +30,17 @@ export const Register = async (req, res) => {
       no_whatsapp,
       address,
       company_name,
+      // password
       password: hashPassword,
     });
 
-    return handleResponseSuccess(res, "Pendaftaran Akun berhasil.");
+    return handleResponseSuccess(res, 'Pendaftaran Akun berhasil.');
   } catch (error) {
     return handleResponseError(res);
   }
 };
 
-export const Login = async (req, res) => {
+exports.Login = async (req, res) => {
   try {
     const { email, password } = req.body;
 
@@ -50,17 +51,21 @@ export const Login = async (req, res) => {
     });
 
     if (!user) {
-      return handleResponse(res, 404, "email atau password salah");
+      return handleResponse(res, 404, 'email atau password salah');
     }
     const isValidPassword = await bcrypt.compare(password, user.password);
 
     if (!isValidPassword) {
-      return handleResponse(res, 404, "email atau password salah");
+      return handleResponse(res, 404, 'email atau password salah');
     }
+    // if (user.password !== password) {
+    //   return handleResponse(res, 404, 'email atau password salah');
+    // }
+
     const createToken = jwt.sign(
       { id: user.id, email: user.email, role: user.role },
       process.env.ACCESS_TOKEN_SECRET,
-      { expiresIn: "1d" }
+      { expiresIn: '1d' }
     );
 
     res.status(200).json({ email: user.email, createToken });

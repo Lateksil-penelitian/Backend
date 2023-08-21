@@ -1,7 +1,7 @@
-import { DataTypes } from "sequelize";
-import db from "../config/database.js";
-import Order from "./order.js";
-import Users from "./user.js";
+const { DataTypes } = require("sequelize");
+const db = require("../config/database.js");
+const Order = require("./order.js");
+const Users = require("./user.js");
 
 const TeknisiPengujian = db.define(
   "TeknisiPengujian",
@@ -50,7 +50,7 @@ TeknisiPengujian.belongsTo(Users, { as: "teknisi", foreignKey: "UserId" });
 Order.hasMany(TeknisiPengujian);
 TeknisiPengujian.belongsTo(Order);
 
-export default TeknisiPengujian;
+module.exports = TeknisiPengujian;
 
 (async () => {
   await TeknisiPengujian.sync({ alter: true }).then(() => {

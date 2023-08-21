@@ -1,8 +1,8 @@
-import { DataTypes } from "sequelize";
-import db from "../config/database.js";
+const { DataTypes } = require('sequelize');
+const db = require('../config/database.js');
 
 const Project = db.define(
-  "proyek",
+  'proyek',
   {
     id: {
       type: DataTypes.UUID,
@@ -48,10 +48,10 @@ const Project = db.define(
   }
 );
 
-export default Project;
+module.exports = Project;
 
 (async () => {
   await Project.sync({ alter: true }).then(() => {
-    console.log("Proyek Database  & tables created!");
+    console.log('Proyek Database  & tables created!');
   });
 })();

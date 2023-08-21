@@ -1,23 +1,19 @@
-import fs from "fs";
-import path from "path";
-import { Op } from "sequelize";
-import db from "../config/database.js";
-import Pengujian from "../models/pengujian.js";
-import {
+const fs = require("fs");
+const { Op } = require("sequelize");
+const Pengujian = require("../models/pengujian.js");
+const {
   createPengujianServices,
   deletePengujianServices,
-  updatePengujianServices,
-} from "../services/pengujianServices.js";
-import { handlePagination } from "../utils/handlePagination.js";
-import {
+} = require("../services/pengujianServices.js");
+const {
   handleResponseDeleteSuccess,
   handleResponseError,
   handleResponseNotFound,
   handleResponseSuccess,
   handleResponseUpdateSuccess,
-} from "../utils/handleResponse.js";
+} = require("../utils/handleResponse.js");
 
-export const createPengujian = async (req, res) => {
+exports.createPengujian = async (req, res) => {
   const {
     jenis_pengujian,
     code,
@@ -50,7 +46,7 @@ export const createPengujian = async (req, res) => {
   }
 };
 
-export const updatePengujian = async (req, res) => {
+exports.updatePengujian = async (req, res) => {
   const { id } = req.params;
   const {
     jenis_pengujian,
@@ -71,7 +67,6 @@ export const updatePengujian = async (req, res) => {
       return handleResponseNotFound(res);
     }
 
-    // console.log('DATA PENGUJIAN ===========', pengujian.image)
     if (req.file) {
       if (pengujian.image !== null) {
         fs.unlinkSync(`uploads/pengujian/${pengujian.image}`);
@@ -102,7 +97,7 @@ export const updatePengujian = async (req, res) => {
   }
 };
 
-export const deletePengujian = async (req, res) => {
+exports.deletePengujian = async (req, res) => {
   const { id } = req.params;
   try {
     const deleted = await deletePengujianServices(id);
@@ -116,7 +111,7 @@ export const deletePengujian = async (req, res) => {
   }
 };
 
-export const getAllPengujian = async (req, res) => {
+exports.getAllPengujian = async (req, res) => {
   const { page = 1, limit = 10, search = "", filter = {} } = req.body;
 
   const offset = (page - 1) * limit;
@@ -189,6 +184,6 @@ export const getAllPengujian = async (req, res) => {
       totalPages: Math.ceil(count / limit),
     });
   } catch (error) {
-    return handleResponseError(res); // Menambahkan argumen error di sini untuk memberikan informasi kesalahan pada handleResponseError
+    return handleResponseError(res);
   }
 };

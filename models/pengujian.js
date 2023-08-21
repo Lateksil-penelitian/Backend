@@ -1,8 +1,8 @@
-import { DataTypes } from "sequelize";
-import db from "../config/database.js";
+const { DataTypes } = require('sequelize');
+const db = require('../config/database.js');
 
 const Pengujian = db.define(
-  "Pengujian",
+  'Pengujian',
   {
     id: {
       type: DataTypes.UUID,
@@ -19,7 +19,7 @@ const Pengujian = db.define(
     },
     min_quantity: {
       type: DataTypes.STRING(15),
-      defaultValue: "1",
+      defaultValue: '1',
     },
     code: {
       type: DataTypes.STRING(115),
@@ -55,11 +55,10 @@ const Pengujian = db.define(
   }
 );
 
-export default Pengujian;
-
+module.exports = Pengujian;
 
 (async () => {
   await Pengujian.sync({ alter: true }).then(() => {
-    console.log("Pengujian Database  & tables created!");
+    console.log('Pengujian Database  & tables created!');
   });
 })();

@@ -1,16 +1,16 @@
-import fs from "fs";
-import Users from "../models/user.js";
-import { handlePagination } from "../utils/handlePagination.js";
-import {
+const fs = require("fs");
+const Users = require("../models/user.js");
+const { handlePagination } = require("../utils/handlePagination.js");
+const {
   handleResponseDeleteSuccess,
   handleResponseError,
   handleResponseNotFound,
   handleResponseSuccess,
   handleResponseUpdateSuccess,
-} from "../utils/handleResponse.js";
+} = require("../utils/handleResponse.js");
 
-//UPDATE USER PER ID
-export const updateUser = async (req, res) => {
+// UPDATE USER PER ID
+exports.updateUser = async (req, res) => {
   const { id } = req.params;
   const { full_name, no_whatsapp, email, address } = req.body;
 
@@ -46,7 +46,7 @@ export const updateUser = async (req, res) => {
   }
 };
 
-export const deleteUser = async (req, res) => {
+exports.deleteUser = async (req, res) => {
   const { id } = req.params;
 
   try {
@@ -67,8 +67,8 @@ export const deleteUser = async (req, res) => {
   }
 };
 
-//GET ALL USER AND PAGINATION
-export const AllUsers = async (req, res) => {
+// GET ALL USER AND PAGINATION
+exports.AllUsers = async (req, res) => {
   const viewData = [
     "id",
     "full_name",
@@ -91,8 +91,8 @@ export const AllUsers = async (req, res) => {
   return handlePagination(req, res, viewData, searchFilterData, Users);
 };
 
-//GET INFO USER
-export const infoUser = async (req, res) => {
+// GET INFO USER
+exports.infoUser = async (req, res) => {
   const userEmail = req.params.email;
 
   try {

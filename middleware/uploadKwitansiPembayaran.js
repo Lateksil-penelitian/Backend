@@ -1,6 +1,6 @@
-import multer from "multer";
-import path from "path";
-import { v4 } from "uuid";
+const multer = require("multer");
+const path = require("path");
+const { v4 } = require("uuid");
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -19,4 +19,4 @@ const uploadKwitansiPembayaran = multer({ storage: storage }).single(
   "image_kwitansi"
 );
 
-export default uploadKwitansiPembayaran;
+module.exports = uploadKwitansiPembayaran;
